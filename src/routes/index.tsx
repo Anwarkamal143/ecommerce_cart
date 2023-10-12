@@ -1,48 +1,30 @@
 import App from "App";
-import { AuthIsNotSignedIn, AuthIsSignedIn } from "context/authContext";
+
 import Applayout from "layouts/Applayout";
-import SignIn from "pages/auth/signin";
-import { Outlet, createBrowserRouter } from "react-router-dom";
-const AUTH_ROUTES = {
+import Cart from "pages/cart";
+import Home from "pages/home";
+
+import { createBrowserRouter } from "react-router-dom";
+const ROUTES = {
   path: "/",
-  element: (
-    <AuthIsSignedIn>
-      <Applayout />
-    </AuthIsSignedIn>
-  ),
+  element: <Applayout />,
 
   children: [
     {
-      path: "team",
-      element: <div>team</div>,
-      // loader: teamLoader,
+      index: true,
+      element: <Home />,
     },
-  ],
-};
-const PUBLIC_ROUTES = {
-  element: (
-    <AuthIsNotSignedIn>
-      <Outlet />
-    </AuthIsNotSignedIn>
-  ),
-  path: "/",
-  children: [
     {
-      element: <SignIn />,
-      path: "signin",
+      path: "/cart",
+      element: <Cart />,
     },
   ],
 };
+
 const router = createBrowserRouter([
   {
     element: <App />,
-    // loader: rootLoader,
-    children: [
-      AUTH_ROUTES,
-      PUBLIC_ROUTES,
-      { path: "*", element: <div>Page Not Found :(</div> },
-    ],
+    children: [ROUTES, { path: "*", element: <div>Page Not Found :(</div> }],
   },
-  // { path: "*", element: <div>Page Not Found :(</div> },
 ]);
 export default router;
