@@ -11,7 +11,6 @@ import {
 } from "react";
 import { getUrlParts, isValidUrl } from "utils";
 
-// import RoundPlaceholder from 'components/skeletons/PlaceholderSvg';
 import { v4 } from "uuid";
 
 export type ImageType = ComponentPropsWithoutRef<"img"> & {
